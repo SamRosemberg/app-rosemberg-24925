@@ -1,0 +1,11 @@
+.center {
+    justify-content: center;
+    align-items: center;
+}
+
+.classIcon {
+    width: 1 rem;
+    hover {
+            color: red;
+    }
+}
