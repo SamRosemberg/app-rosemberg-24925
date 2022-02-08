@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import './FunctionCounter.css'
+import './ItemCount.css'
 
-export const FunctionCounter = (props) => {
+export const ItemCount = (props) => {
     const [count, setCount] = useState(0)
 
     let stock = 15;

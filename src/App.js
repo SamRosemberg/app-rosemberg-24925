@@ -1,5 +1,5 @@
 import './App.css';
-import { FunctionCounter} from './components/FunctionCounter/FunctionCounter'
+import { ItemCount } from './components/ItemCount/ItemCount';
 import { ItemListContainer } from './components/ItemListContainer/ItemListContainer';
 import {NavBar} from './components/NavBar/NavBar'
 
@@ -9,7 +9,7 @@ function App() {
     <>
     <NavBar />
     <ItemListContainer />
-    <FunctionCounter />
+    <ItemCount />
     </>
   );
 }
