@@ -4,7 +4,6 @@ import './ItemCount.css'
 export const ItemCount = ({stock, initial, onAdd}) => {
     const [count, setCount] = useState(initial)
 
-   
 
     const decrement = () => {
         if(count > 1) {
