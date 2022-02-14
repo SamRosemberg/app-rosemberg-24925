@@ -4,8 +4,5 @@
 }
 
 .classIcon {
-    width: 1 rem;
-    hover {
-            color: red;
-    }
+    width: 5 rem;
 }
