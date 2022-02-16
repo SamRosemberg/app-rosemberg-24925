@@ -4,7 +4,7 @@ import { ItemList } from './ItemList'
 
 
 
-const ItemListContainer = ({ greeting='Hola Mundo!'}) => {
+export const ItemListContainer = ({ greeting='Hola Mundo!'}) => {
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -36,5 +36,3 @@ const ItemListContainer = ({ greeting='Hola Mundo!'}) => {
             </div>
         ) 
 }
-
-export default ItemListContainer
