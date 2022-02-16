@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { getProducts } from '../asyncmock'
-import { ItemList } from './ItemList'
+import { getProduct } from '../asyncmock'
+import { ItemDetail } from './ItemDetail'
 
-
-
-export const ItemListContainer = ({ greeting='Hola Mundo!'}) => {
-    const [products, setProducts] = useState([])
+export const ItemDetailContainer = ({ greeting='Hola Mundo!'}) => {
+    const [product, setProduct] = useState([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        getProducts()
+        getProduct()
         .then(products => {
             console.log(products)
-            setProducts(products)
+            setProduct(products)
     })
         .catch((error) => {
             console.log(error)
@@ -24,13 +22,13 @@ export const ItemListContainer = ({ greeting='Hola Mundo!'}) => {
     }, [])
 
         return (
-            <div className='itemListContainer d-flex row'>
-            <h1>Item List Cointener</h1>
+            <div>
+            <h1>Item Detail Container</h1>
             <div className='container'>
             {loading === true ?
-                    (<h1>Cargando...</h1>) :
+                    (<h2>Cargando...</h2>) :
                 (
-                    <ItemList products={products}/>
+                    <ItemDetail product={product}/>
                 )}
             </div>
             </div>
