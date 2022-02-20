@@ -6,9 +6,9 @@ export const ItemList = ({ products }) => {
     return (
         <div>
             {products.map((product) => (
-                <Container>
+                <Container fluid>
                     <Row>
-                        <Col><Item {...product} key={product.id} /></Col>
+                        <Item {...product} key={product.id} />
                     </Row>
                 </Container>
             ))}

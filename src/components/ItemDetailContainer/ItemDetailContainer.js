@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { getProduct } from '../asyncmock'
 import { ItemDetail } from './ItemDetail'
+import { useParams } from 'react-router-dom'
 
 export const ItemDetailContainer = ({ greeting='Hola Mundo!'}) => {
-    const [product, setProduct] = useState([])
+    const [product, setProduct] = useState()
     const [loading, setLoading] = useState(true)
+    const { productId } = useParams()
 
     useEffect(() => {
-        getProduct()
-        .then(products => {
-            console.log(products)
-            setProduct(products)
+        getProduct(productId)
+        .then(product => {
+            console.log(product)
+            setProduct(product)
     })
         .catch((error) => {
             console.log(error)
@@ -19,7 +21,7 @@ export const ItemDetailContainer = ({ greeting='Hola Mundo!'}) => {
         .finally(() => {
             setLoading(false)
         })
-    }, [])
+    }, [productId])
 
         return (
             <div>
