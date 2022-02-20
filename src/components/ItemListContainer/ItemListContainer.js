@@ -17,7 +17,7 @@ export const ItemListContainer = ({ greeting='Hola Mundo!'}) => {
             .then(products => {
                 console.log(products)
                 setProducts(products)
-     })
+        })
             .catch((error) => {
                 console.log(error)
             })
@@ -29,7 +29,7 @@ export const ItemListContainer = ({ greeting='Hola Mundo!'}) => {
             .then(products => {
                 console.log(products)
                 setProducts(products)
-     })
+        })
             .catch((error) => {
                 console.log(error)
             })
