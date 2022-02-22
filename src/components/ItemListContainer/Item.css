@@ -1,4 +1,13 @@
+
+
+
 .card {
     margin: 2%;
     padding: 2%;
+    background-color: rgb(224, 179, 123);
+}
+
+.imgCard {
+    width: auto;
+    height: 350px;
 }

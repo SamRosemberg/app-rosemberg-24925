@@ -42,9 +42,9 @@ export const ItemListContainer = ({ greeting='Hola Mundo!'}) => {
         return (
             <div className='itemListContainer d-flex row'>
             <h1>Item List Cointener</h1>
-            <div className='container'>
+            <div className='container d-flex'>
             {loading === true ?
-                    (<h1>Cargando...</h1>) :
+                    (<h1 className='text-center'>Cargando...</h1>) :
                 (
                     <ItemList products={products}/>
                 )}

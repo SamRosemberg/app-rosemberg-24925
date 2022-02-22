@@ -1,7 +1,16 @@
 import React from 'react'
-import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { useState } from 'react'
+import { Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap'
+import { ItemCount } from '../ItemCount/ItemCount'
+
 
 export const ItemDetail = ({product}) => {
+
+    const [compra, setcompra] = useState(0)
+
+    const onAdd = (count) => {
+        setcompra(count)
+    }
     return (
         <div>
             <Card style={{ width: '18rem' }}>
@@ -16,6 +25,11 @@ export const ItemDetail = ({product}) => {
                     <ListGroupItem>{product.price}</ListGroupItem>
                     <ListGroupItem>Quedan {product.stock} disponibles</ListGroupItem>
                 </ListGroup>
+                <Card.Footer>
+                    {compra <= 0 ?
+                        (<ItemCount stock={product.stock} initial={1} onAdd={onAdd}/>) 
+                        : <Button variant="success" href="/cart"> Finalizar Compra </Button>} 
+                </Card.Footer>
             </Card>
         </div>
     )
