@@ -19,9 +19,8 @@ export const ItemCount = ({stock, initial, onAdd}) => {
 
 
     return (
-        <div className="text-center ">
-            <h3>Function Counter</h3>
-            <h3>{count}</h3>
+        <div className="text-center">
+            <h6>{count}</h6>
             <div className="col">
                 <button className="btn btn-light mx-3" disabled={count <= 0 ? true : false} onClick={decrement}>-</button>
                 <button className="btn btn-light mx-3" disabled={stock === 0 ? true : false} onClick={increment}>+</button>
