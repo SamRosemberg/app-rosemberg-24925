@@ -8,7 +8,6 @@ import CartContext from '../../Context/CartContext'
 
 export const ItemDetail = ({ id, name, author, img, category, description, price, stock }) => {
     const [count, setCount] = useState(0)
-    console.log("Id del container", id);
     const { AddItem } = useContext(CartContext)
 
     const handleOnAdd = (count) => {

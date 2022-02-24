@@ -6,7 +6,6 @@ const MyContext = createContext()
 
 export const CartContextProvider = ({ children }) => {
     const [cart, setCart] = useState([])
-    console.log("Carrtioooo", cart);
 
     const AddItem = (productToAdd, count) => {
 
@@ -16,10 +15,8 @@ export const CartContextProvider = ({ children }) => {
         }
 
         if(isInCart(productToAdd.id)) {
-            console.log('Ya existe ene l carrito');
-            console.log("Tomaaa", cart);
+            alert('Ya agregaste este producto alcarrito');
             return;
-            //logica de producto repetido
         } else {
             setCart([...cart, newObj])
         }
@@ -27,7 +24,8 @@ export const CartContextProvider = ({ children }) => {
     }
 
     const removeItem = (id) => {
-        //ver que va
+        const result = cart.filter(c => c.id === id)
+        setCart(result)
     }
 
     const isInCart = (id) => {
