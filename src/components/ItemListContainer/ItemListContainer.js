@@ -3,19 +3,24 @@ import { useParams } from 'react-router-dom'
 import { getProductByCategory, getProducts } from '../asyncmock'
 import { ItemList } from './ItemList'
 
-
+import { useContext } from 'react';
+import CartContext from '../../Context/CartContext'
 
 export const ItemListContainer = ({ greeting='Hola Mundo!'}) => {
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
     const { categoryId } = useParams()
 
+
+    const { cart } = useContext(CartContext)
+  console.log('home cart', cart);
+
     useEffect(() => {
         if(categoryId === undefined) {
             
             getProducts()
             .then(products => {
-                console.log(products)
+                //console.log(products)
                 setProducts(products)
         })
             .catch((error) => {
@@ -27,7 +32,7 @@ export const ItemListContainer = ({ greeting='Hola Mundo!'}) => {
         } else {
             getProductByCategory(categoryId)
             .then(products => {
-                console.log(products)
+                //console.log(products)
                 setProducts(products)
         })
             .catch((error) => {

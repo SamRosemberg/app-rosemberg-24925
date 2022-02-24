@@ -11,7 +11,7 @@ export const ItemDetailContainer = ({ greeting='Hola Mundo!'}) => {
     useEffect(() => {
         getProduct(productId)
         .then(product => {
-            console.log(product)
+            //console.log(product)
             setProduct(product)
     })
         .catch((error) => {
@@ -30,7 +30,7 @@ export const ItemDetailContainer = ({ greeting='Hola Mundo!'}) => {
             {loading === true ?
                     (<h2>Cargando...</h2>) :
                 (
-                    <ItemDetail product={product}/>
+                    <ItemDetail {...product}/>
                 )}
             </div>
             </div>
