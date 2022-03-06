@@ -5,18 +5,15 @@ import { NavBar } from './components/NavBar/NavBar'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { CartContextProvider } from './Context/CartContext'
 import { Cart } from './components/Cart/Cart'
+import { NotificationServicesProvider } from './services/notification/NotificationServices'
+
 
 
 function App() {
 
-  
-
-  //const agregarAlCarrito = (count) => {
-      //alert('Se han agregado: ' + count + ' al carrito')
-  //}
-
   return (
     <>
+    <NotificationServicesProvider>
     <CartContextProvider>
       <BrowserRouter>
         <NavBar />
@@ -28,6 +25,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       </CartContextProvider>
+    </NotificationServicesProvider>
     </>
   );
 }

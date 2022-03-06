@@ -22,7 +22,7 @@ export const NavBar = () => {
         </NavDropdown>
       </Nav>
     </Navbar.Collapse>
-    <CartWidget handleClick={() => alert(`Hay ${cart.length} productos en el carrito`)} />
+    {cart.length > 0 && ( <CartWidget />)}
   </Container>
 </Navbar>
     )
