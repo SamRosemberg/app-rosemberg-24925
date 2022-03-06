@@ -1,33 +1,49 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap'
 import { ItemCount } from '../ItemCount/ItemCount'
+import CartContext from '../../Context/CartContext'
 
 
-export const ItemDetail = ({product}) => {
 
-    const [compra, setcompra] = useState(0)
+export const ItemDetail = ({ id, name, author, img, category, description, price, stock }) => {
+    const [count, setCount] = useState(0)
+    const { AddItem } = useContext(CartContext)
 
-    const onAdd = (count) => {
-        setcompra(count)
+    const handleOnAdd = (count) => {
+        setCount(count)
+
+        const productToAdd = {
+            id, 
+            name,
+            author,
+            img,
+            category,
+            description,
+            price,
+            stock
+        }
+
+        AddItem(productToAdd, count)
     }
+
     return (
         <div>
             <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={product.img} />
+                <Card.Img variant="top" src={img} />
                 <Card.Body>
-                    <Card.Title>{product.name}</Card.Title>
-                    <Card.Text>{product.description}</Card.Text>
+                    <Card.Title>{name}</Card.Title>
+                    <Card.Text>{description}</Card.Text>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
-                    <ListGroupItem>Autor: {product.author}</ListGroupItem>
-                    <ListGroupItem>Categoria: {product.category}</ListGroupItem>
-                    <ListGroupItem>{product.price}</ListGroupItem>
-                    <ListGroupItem>Quedan {product.stock} disponibles</ListGroupItem>
+                    <ListGroupItem>Autor: {author}</ListGroupItem>
+                    <ListGroupItem>Categoria: {category}</ListGroupItem>
+                    <ListGroupItem>USD {price}</ListGroupItem>
+                    <ListGroupItem>Quedan {stock} disponibles</ListGroupItem>
                 </ListGroup>
                 <Card.Footer>
-                    {compra <= 0 ?
-                        (<ItemCount stock={product.stock} initial={1} onAdd={onAdd}/>) 
+                    {count <= 0 ?
+                        (<ItemCount stock={stock} initial={1} onAdd={handleOnAdd}/>) 
                         : <Button variant="success" href="/cart"> Finalizar Compra </Button>} 
                 </Card.Footer>
             </Card>
