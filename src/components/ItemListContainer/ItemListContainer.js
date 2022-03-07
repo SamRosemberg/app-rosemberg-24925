@@ -1,49 +1,49 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { getProductByCategory, getProducts } from '../asyncmock'
 import { ItemList } from './ItemList'
 import { useContext } from 'react';
 import CartContext from '../../Context/CartContext'
+import { getDocs, collection, query, where } from '@firebase/firestore';
+import { firestoreDb } from '../../services/firebase/firebase';
+import { useNotificationServices } from '../../services/notification/NotificationServices'
 
 export const ItemListContainer = ({ greeting='Hola Mundo!'}) => {
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
     const { categoryId } = useParams()
-
+    const setNotification = useNotificationServices()
 
     const { cart } = useContext(CartContext)
     console.log('home cart', cart);
 
     useEffect(() => {
-        if(categoryId === undefined) {
-            
-            getProducts()
-            .then(products => {
-                setProducts(products)
+        setLoading(true)
+
+        const collectionRef = categoryId ?
+            query(collection(firestoreDb, 'products'), where('category', '==', categoryId)) :
+            collection(firestoreDb, 'products')
+
+        getDocs(collectionRef).then(response => {
+            const products = response.docs.map(doc => {
+                return { id: doc.id, ...doc.data() }
+            })
+
+            setProducts(products)
+        }).catch((error) => {
+            setNotification('error',`Error buscando productos: ${error}`)
+        }).finally(() => {
+            setLoading(false)
         })
-            .catch((error) => {
-                console.log(error)
-            })
-            .finally(() => {
-                setLoading(false)
-            })
-        } else {
-            getProductByCategory(categoryId)
-            .then(products => {
-                setProducts(products)
-        })
-            .catch((error) => {
-                console.log(error)
-            })
-            .finally(() => {
-                setLoading(false)
-            })
-        }
-    }, [])
+
+
+        return (() => {
+            setProducts()
+        })          
+    }, [categoryId]) // eslint-disable-line
 
         return (
             <div className='itemListContainer d-flex row'>
-            <h1>Item List Cointener</h1>
+            <h1>HOME</h1>
             <div className='container d-flex'>
             {loading === true ?
                     (<h1 className='text-center'>Cargando...</h1>) :
