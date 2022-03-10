@@ -1,4 +1,4 @@
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { Link } from 'react-router-dom'
 import './Item.css'
 
@@ -12,7 +12,7 @@ const Item = (product) => {
                 <Card.Text>
                     {product.category}
                 </Card.Text>
-                <Link to={`/detail/${product.id}`}>Ver detalle</Link>
+                <Button variant="secondary" as={Link} to={`/detail/${product.id}`}>Ver detalle</Button>
             </Card.Body>
         </Card>
     );

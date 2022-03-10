@@ -41,11 +41,16 @@ export const CartContextProvider = ({ children }) => {
         return cart.some(p => p.id === id)
     }
 
+    const clearCart = () => {
+        setCart([])
+    }
+
     return (
         <MyContext.Provider value={{
             cart,
             cantItems,
             total,
+            clearCart,
             AddItem,
             removeItem,
         }}>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom'
 import { ItemList } from './ItemList'
 import { useContext } from 'react';
@@ -42,15 +43,15 @@ export const ItemListContainer = ({ greeting='Hola Mundo!'}) => {
     }, [categoryId]) // eslint-disable-line
 
         return (
-            <div className='itemListContainer d-flex row'>
-            <h1>HOME</h1>
-            <div className='container d-flex'>
+            <div>
+            <h1>Hay grandes libros en el mundo y grandes mundos en los libros...</h1>
+            <Container fluid>
             {loading === true ?
                     (<h1 className='text-center'>Cargando...</h1>) :
                 (
                     <ItemList products={products}/>
                 )}
-            </div>
+            </Container>
             </div>
         ) 
 }
