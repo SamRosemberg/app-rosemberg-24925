@@ -1,11 +1,24 @@
-import React, { useContext } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { getDocs, collection } from 'firebase/firestore'
+import { firestoreDb } from '../../services/firebase/firebase'
 import { CartWidget } from '../CartWidget/CartWidget';
 import CartContext from '../../Context/CartContext'
 
 export const NavBar = () => {
+  const [categories, setCategories] = useState([])
+
   const { cart } = useContext(CartContext)
+
+  useEffect(() => {
+      getDocs(collection(firestoreDb, 'categories')).then(response => {
+        const categories = response.docs.map(cat => {
+          return { id: cat.id, ...cat.data()}
+        })
+        setCategories(categories)
+      })
+  }, [])
     return (
         <Navbar bg="light" expand="lg">
   <Container>
