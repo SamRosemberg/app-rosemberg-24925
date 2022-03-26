@@ -41,9 +41,9 @@ export const Cart = () => {
 
             objOrder.items.forEach(prod => {
                 getDoc(doc(firestoreDb, 'products', prod.id)).then(response => {
-                    if(response.data().stock >= prod.quantity) {
+                    if(response.data().stock >= prod.count) {
                         batch.update(doc(firestoreDb, 'products', response.id), {
-                            stock: response.data().stock - prod.quantity
+                            stock: response.data().stock - prod.count
                         })
                     } else {
                         outOfStock.push({ id: response.id, ...response.data()})    

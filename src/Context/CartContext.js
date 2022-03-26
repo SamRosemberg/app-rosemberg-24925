@@ -32,8 +32,6 @@ export const CartContextProvider = ({ children }) => {
         const result = cart.filter(c => c.id !== producto.id)
         setCart(result)
         setcantItems(cantItems - producto.count)
-        console.log("elimino<.", producto.total);
-        console.log("2elimino totoal", total);
         settotal(total - producto.total)
     }
 
